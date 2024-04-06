@@ -1,0 +1,135 @@
+// Build script for COMP1721 Coursework 1 Updated 20240220
+
+plugins {
+  id 'java'
+  id 'checkstyle'
+  id 'application'
+  id 'com.github.ben-manes.versions' version '0.51.0'
+  // Uncomment line below if using JavaFX for Advanced solution
+  id 'org.openjfx.javafxplugin' version '0.1.0'
+  id 'idea'
+}
+
+// Library dependencies
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation (
+    'org.junit.jupiter:junit-jupiter-api:5.10.2',
+    'org.hamcrest:hamcrest:2.2'
+  )
+  testRuntimeOnly (
+    'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+  )
+}
+
+// Uncomment section below if using JavaFX for Advanced solution
+
+javafx {
+  version = '23-ea+3'
+  modules = [ 'javafx.controls' ]
+}
+
+// Unit testing
+
+test {
+  useJUnitPlatform()
+
+  testLogging {
+    events 'PASSED', 'FAILED', 'SKIPPED'
+  }
+}
+
+// Style checking
+
+checkstyle {
+  showViolations false
+}
+
+task style {
+  group 'verification'
+  description 'Runs checkstyle on code of this project.'
+  dependsOn checkstyleMain
+}
+
+// Support for IntelliJ
+
+idea {
+  module {
+    sourceDirs += file('src/main/java')
+    testSourceDirs += file('src/test/java')
+    inheritOutputDirs = false
+    outputDir = file('build/classes/java/main')
+    testOutputDir file('build/classes/java/test')
+  }
+}
+
+// Running the applications
+
+application {
+  mainClass = 'TrackInfo'
+  run {
+    description 'Runs TrackInfo on a file specified as a command line argument.'
+    args 'data/walk.csv'
+    doFirst {
+      println "\nRunning TrackInfo with walk.csv as a command line argument...\n"
+    }
+  }
+}
+
+task runNoFile(type: JavaExec) {
+  group 'application'
+  description 'Runs TrackInfo without an command line argument.'
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = 'TrackInfo'
+  doFirst {
+    println "\nRunning TrackInfo without a command line argument..."
+    println "(Usage message expected on stdout)\n"
+  }
+}
+
+task runKML(type: JavaExec) {
+  group 'application'
+  description 'Runs ConvertToKML on a file specified as a command line argument.'
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = 'ConvertToKML'
+  args 'data/walk.csv', 'build/walk.kml'
+  doFirst {
+    println "\nRunning ConvertToKML on data/walk.csv..."
+    println "(Output should be in build/walk.kml)\n"
+  }
+}
+
+// Uncomment section below if using JavaFX for Advanced solution
+
+task runPlot(type: JavaExec) {
+  group 'application'
+  description 'Runs ElevationPlot on a file specified as a command line argument.'
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = 'ElevationPlot'
+  args 'data/walk.csv'
+  doFirst {
+    println "\nRunning ElevationPlot with walk.csv as a command line argument...\n"
+  }
+}
+
+// Generation of Zip file for submission
+
+task submission(type: Zip) {
+  group 'Submission'
+  description 'Generates Zip archive suitable for submission to Minerva.'
+
+  archiveFileName = 'cwk1.zip'
+  destinationDirectory = project.rootDir
+
+  from("$project.rootDir") {
+    exclude 'cwk1.zip', '.idea', '.git', '**/.gradle', '**/build'
+  }
+
+  doLast {
+    logger.warn("cwk1.zip generated.")
+  }
+}
