@@ -1,19 +1,7 @@
-public class BaccaratHand{
+public class BaccaratHand extends CardCollection{
 
     public BaccaratHand(){
-
-    }
-
-    public int size(){
-        return 0;
-    }
-
-    public void add(Card add){
-
-    }
-
-    public int value(){
-        return 0;
+        super();
     }
 
     public boolean isNatural(){
@@ -24,4 +12,6 @@ public class BaccaratHand{
     public String toString(){
         return null;
     }
+
+
 }
