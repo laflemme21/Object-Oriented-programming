@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="BasicTests" tests="18" skipped="0" failures="0" errors="0" timestamp="2024-04-07T20:53:26" hostname="KARL" time="0.193">
+  <properties/>
+  <testcase name="Correct string representation of a Point" classname="BasicTests" time="0.05"/>
+  <testcase name="Latitude stored and retrieved correctly" classname="BasicTests" time="0.01"/>
+  <testcase name="GPSException if longitude is too low" classname="BasicTests" time="0.006"/>
+  <testcase name="GPSException when retrieving from an empty Track" classname="BasicTests" time="0.004"/>
+  <testcase name="Appropriate exception if data file does not exist" classname="BasicTests" time="0.01"/>
+  <testcase name="Points read into a Track correctly" classname="BasicTests" time="0.017"/>
+  <testcase name="GPSException if latitude is too high" classname="BasicTests" time="0.003"/>
+  <testcase name="GPSException if index is too low" classname="BasicTests" time="0.003"/>
+  <testcase name="GPSException if longitude is too low" classname="BasicTests" time="0.004"/>
+  <testcase name="GPSException if index is too high" classname="BasicTests" time="0.003"/>
+  <testcase name="Elevation stored and retrieved correctly" classname="BasicTests" time="0.001"/>
+  <testcase name="Time stored and retrieved correctly" classname="BasicTests" time="0.003"/>
+  <testcase name="Longitude stored and retrieved correctly" classname="BasicTests" time="0.003"/>
+  <testcase name="Size of a Track returned correctly" classname="BasicTests" time="0.004"/>
+  <testcase name="GPSException if data file has fewer than 4 columns" classname="BasicTests" time="0.006"/>
+  <testcase name="Old data cleared when reading a new file" classname="BasicTests" time="0.015"/>
+  <testcase name="GPSException if longitude is too high" classname="BasicTests" time="0.004"/>
+  <testcase name="Points stored in and retrieved from a Track correctly" classname="BasicTests" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
