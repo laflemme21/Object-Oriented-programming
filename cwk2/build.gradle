@@ -1,0 +1,108 @@
+// Build script for COMP1721 Coursework 2
+
+plugins {
+  id 'java'
+  id 'jvm-test-suite'
+  id 'checkstyle'
+  id 'application'
+  id "com.github.ben-manes.versions" version '0.51.0'
+  id 'idea'
+}
+
+// Library dependencies
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation (
+          'org.junit.jupiter:junit-jupiter-api:5.10.2',
+          'org.hamcrest:hamcrest:2.2'
+  )
+  testRuntimeOnly (
+          'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+  )
+}
+
+// Unit testing
+
+testing {
+  suites {
+    test {
+      useJUnitJupiter()
+    }
+  }
+}
+
+test {
+  testLogging {
+    events 'PASSED', 'FAILED', 'SKIPPED'
+  }
+}
+
+// Style checking
+
+checkstyle {
+  showViolations false
+}
+
+task style {
+  group 'verification'
+  description 'Runs checkstyle on code of this project.'
+  dependsOn checkstyleMain
+}
+
+// Support for IntelliJ
+
+idea {
+  module {
+    sourceDirs += file('src/main/java')
+    testSourceDirs += file('src/test/java')
+    inheritOutputDirs = false
+    outputDir = file('build/classes/java/main')
+    testOutputDir file('build/classes/java/test')
+  }
+}
+
+// Running the application
+
+application {
+  mainClass = 'Baccarat'
+  run {
+    description 'Runs the Baccarat application.'
+    doFirst {
+      println "\nRunning Baccarat application...\n"
+    }
+  }
+}
+
+task interact(type: JavaExec) {
+  group 'application'
+  description 'Runs Baccarat application with -i command line option.'
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = 'Baccarat'
+  standardInput = System.in
+  args ('-i')
+  doFirst {
+    println "\nRunning Baccarat with -i command line argument...\n"
+  }
+}
+
+// Generation of Zip file for submission
+
+task submission(type: Zip) {
+  group 'Submission'
+  description 'Generates Zip archive suitable for submission to Minerva.'
+
+  archiveFileName = 'cwk2.zip'
+  destinationDirectory = project.rootDir
+
+  from("$project.rootDir") {
+    exclude 'cwk2.zip', '.idea', '.git', '**/.gradle', '**/build'
+  }
+
+  doLast {
+    logger.warn("cwk2.zip generated.")
+  }
+}
