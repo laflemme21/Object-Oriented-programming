@@ -1,26 +1,32 @@
 import java.util.*;
 public class Shoe extends CardCollection{
-    public Shoe(int decks){
+    public Shoe(int decks) throws CardException{
         super();
-        Card myCard;
+        if(decks!=6&&decks!=8){
+            throw new CardException("wrong number of cards in the shoe") ;
+        }
+        BaccaratCard myBaccaratCard;
         for(int i=0;i<decks;i++){
             for(Card.Suit j : Card.Suit.values()){
                 for(Card.Rank k : Card.Rank.values()){
-                    myCard= new Card(k,j);
-                    this.add(myCard);
+                    myBaccaratCard= new BaccaratCard(k,j);
+                    this.add(myBaccaratCard);
                 }
             }
         }
     }
 
-    public void shuffle(){
+    public void shuffle() throws CardException{
+        if(isEmpty()){
+            throw new CardException("wrong number of cards in the shoe") ;
+        }
         Collections.shuffle(cards);
     }
 
     public Card deal() throws CardException{
-        if(this.size()!=312&&this.size()!=416){
+        if(isEmpty()){
             throw new CardException("wrong number of cards in the shoe") ;
         }
-        return null;
+        return cards.remove(0);
     }
 }

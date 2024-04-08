@@ -5,12 +5,33 @@ public class BaccaratHand extends CardCollection{
     }
 
     public boolean isNatural(){
-        return false;
+        return cards.size()==2 && (this.value()==8 || this.value()==9);
     }
 
     @Override
     public String toString(){
-        return null;
+        String string="";
+        for(Card i: cards){
+            string+=i.getRank().getSymbol();
+            string+=i.getSuit().getSymbol()+" ";
+        }
+        if(string!=""){
+        string = string.substring(0, string.length()-1);}
+        return string;
+    }
+
+    @Override
+    public int value(){
+        int cardValue;
+        int sum=0;
+        for(Card i: cards){
+            cardValue=i.value();
+            if(cardValue==10){
+                cardValue=0;
+            }
+            sum+=cardValue;
+        }
+        return sum%10;
     }
 
 
