@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Baccarat {
 
   private int rounds;
@@ -7,69 +8,75 @@ public class Baccarat {
   private BaccaratHand bankHand;
   private BaccaratHand playerHand;
   private Shoe shoe;
-  public boolean playersDraw(int total){
-    if(total<=5){
-      return true;
+
+  public void thirdDraw(){
+    if(shoe.size()>6&&playerHand.value()!=bankHand.value()&&!(bankHand.isNatural()&&playerHand.isNatural())){
+
+      Card pCard=shoe.deal();
+      BaccaratCard pBaccaratCard= new BaccaratCard(pCard.getRank(), pCard.getSuit());
+      System.out.println("Dealing third card..."+pBaccaratCard.value());
+
+      if(playerHand.value()<=5){
+        playerHand.add(pCard);
+      }
+      if(bankHand.value()<3){
+        bankHand.add(shoe.deal());
+      }
+      else if(bankHand.value()==3 && pBaccaratCard.value()!=8){
+        bankHand.add(shoe.deal());
+      }
+      else if(bankHand.value()==4 && pBaccaratCard.value()>1 && pBaccaratCard.value()<8){
+        bankHand.add(shoe.deal());
+      }
+      else if(bankHand.value()==5 && pBaccaratCard.value()>3 && pBaccaratCard.value()<8){
+        bankHand.add(shoe.deal());
+      }
+      else if(bankHand.value()==6 && pBaccaratCard.value()>5 && pBaccaratCard.value()<8){
+        bankHand.add(shoe.deal());
+      }
     }
-    return false;
   }
 
-  public boolean banksDraw(int total, int pCard){
-    if(total<3){
-      return true;
-    }
-    else if(total==3 && pCard!=8){
-      return true;
-    }
-    else if(total==4 && pCard>1 && pCard<8){
-      return true;
-    }
-    else if(total==5 && pCard>3 && pCard<8){
-      return true;
-    }
-    else if(total==6 && pCard>5 && pCard<8){
-      return true;
-    }
-    else {return false;}
-  }
-
-  public boolean gameStatus(BaccaratHand playerHand, BaccaratHand bankHand){
-    if(playerHand.isNatural()&&bankHand.isNatural()){
-      System.out.println("Tie! the Player and the Banker's hands are Naturals");
+  public void gameStatus(){
+    if(playerHand.value()==bankHand.value()){
+      System.out.println("Tie! the Player and the Banker's hands are Naturals!");
       ties++;
-      return false;
     }
     else if(bankHand.isNatural()){
-      System.out.println("The Banker's hands is a Natural");
+      System.out.println("The Banker's hands is a Natural!");
       bankerWins++;
-      return false;
     }
     else if(playerHand.isNatural()){
-      System.out.println("The Player's hands is a Natural");
+      System.out.println("The Player's hands is a Natural!");
       playerWins++;
-      return false;
+    }
+    else if(bankHand.value()>playerHand.value()){
+      System.out.println("The Banker Wins!");
+      bankerWins++;
     }
     else{
-      System.out.println("Neither the Player or the Banker's hand are Naturals");
-      return true;
+      System.out.println("The Player Wins!");
+      playerWins++;
     }
   }
 
   public void summary(){
-    System.out.println("Rounds: "+rounds+"\nBanker's wins: "+bankerWins+"\nPlayer's wins: "+playerWins+"\nTies: "+ties);
+    System.out.println("Rounds played: "+rounds+"\nBanker's wins: "+bankerWins+"\nPlayer's wins: "+playerWins+"\nTies: "+ties);
   }
 
-  public void newGame(){
-    bankHand = new BaccaratHand();
-    playerHand = new BaccaratHand();
-    for(int i=0;i<2;i++){
-      playerHand.add(shoe.deal());
-      bankHand.add(shoe.deal());
+  public void newRound(){
+    if(shoe.size()>=10){
+      bankHand = new BaccaratHand();
+      playerHand = new BaccaratHand();
+      for(int i=0;i<2;i++){
+        playerHand.add(shoe.deal());
+        bankHand.add(shoe.deal());
+      }
+      rounds++;
     }
-    rounds++;
   }
 
-  public void newShoe(int num){
+  public Baccarat(int num){
     shoe = new Shoe(num);
     shoe.shuffle();
   }
@@ -79,7 +86,25 @@ public class Baccarat {
     System.out.println("Banker's hand: "+bankHand.toString()+" = "+bankHand.value());
     }
   public static void main(String[] args){
+    String user = "y";
+    Baccarat game = new Baccarat(6);
+    Scanner myObj = new Scanner(System.in);
+    while((user.charAt(0)=='y' || user.charAt(0)=='Y')&&game.shoe.size()>=10){
 
+      game.newRound();
+      game.printHands();
+      game.thirdDraw();
+      game.printHands();
+      game.gameStatus();
+
+      if(args[0].charAt(0)=='i'||args[0].charAt(0)=='I'){
+        System.out.println("Another game?(y/n):");
+        user = myObj.nextLine();
+      }
+    }
+    game.summary();
+    myObj.close();
+    System.exit(0);
 
   }
 }

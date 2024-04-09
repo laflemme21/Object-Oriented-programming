@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="9.3">
 <file name="C:\Users\carlk\Documents\GitHub\Object-Oriented-programming\objoriented\cwk2\src\main\java\Baccarat.java">
+<error line="40" column="42" severity="warning" message="&apos;playerHand&apos; hides a field." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="40" column="67" severity="warning" message="&apos;bankHand&apos; hides a field." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="63" severity="warning" message="Line is longer than 100 characters (found 127)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="91" column="15" severity="warning" message="Literal Strings should be compared using equals(), not &apos;==&apos;." source="com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck"/>
+<error line="91" column="28" severity="warning" message="Literal Strings should be compared using equals(), not &apos;==&apos;." source="com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck"/>
 </file>
 <file name="C:\Users\carlk\Documents\GitHub\Object-Oriented-programming\objoriented\cwk2\src\main\java\BaccaratCard.java">
 </file>

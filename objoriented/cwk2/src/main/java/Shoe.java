@@ -18,14 +18,14 @@ public class Shoe extends CardCollection{
 
     public void shuffle() throws CardException{
         if(isEmpty()){
-            throw new CardException("wrong number of cards in the shoe") ;
+            throw new CardException("not enough cards in the shoe") ;
         }
         Collections.shuffle(cards);
     }
 
     public Card deal() throws CardException{
         if(isEmpty()){
-            throw new CardException("wrong number of cards in the shoe") ;
+            throw new CardException("not enough cards in the shoe") ;
         }
         return cards.remove(0);
     }
