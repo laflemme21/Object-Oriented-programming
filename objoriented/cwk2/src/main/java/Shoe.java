@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Collections;
 public class Shoe extends CardCollection{
     public Shoe(int decks) throws CardException{
         super();

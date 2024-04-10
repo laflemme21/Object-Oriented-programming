@@ -10,7 +10,10 @@ public class Baccarat {
   private Shoe shoe;
 
   public void thirdDraw(){
-    if(shoe.size()>6&&playerHand.value()!=bankHand.value()&&!(bankHand.isNatural()&&playerHand.isNatural())){
+    if(shoe.size()>6
+    &&playerHand.value()!=bankHand.value()
+    &&!(bankHand.isNatural()
+    &&playerHand.isNatural())){
 
       Card pCard=shoe.deal();
       BaccaratCard pBaccaratCard= new BaccaratCard(pCard.getRank(), pCard.getSuit());
@@ -61,7 +64,11 @@ public class Baccarat {
   }
 
   public void summary(){
-    System.out.println("Rounds played: "+rounds+"\nBanker's wins: "+bankerWins+"\nPlayer's wins: "+playerWins+"\nTies: "+ties);
+    System.out.println
+    ("Rounds played: "+rounds+
+    "\nBanker's wins: "+bankerWins+
+    "\nPlayer's wins: "+playerWins+
+    "\nTies: "+ties);
   }
 
   public void newRound(){

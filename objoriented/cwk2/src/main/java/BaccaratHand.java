@@ -15,7 +15,7 @@ public class BaccaratHand extends CardCollection{
             string+=i.getRank().getSymbol();
             string+=i.getSuit().getSymbol()+" ";
         }
-        if(string!=""){
+        if(!(string.equals(""))){
         string = string.substring(0, string.length()-1);}
         return string;
     }

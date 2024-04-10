@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Basic" tests="15" skipped="0" failures="0" errors="0" timestamp="2024-04-09T18:27:23" hostname="KARL" time="0.088">
+<testsuite name="Basic" tests="15" skipped="0" failures="0" errors="0" timestamp="2024-04-10T13:21:32" hostname="KARL" time="0.141">
   <properties/>
-  <testcase name="BaccaratCard objects are created properly" classname="Basic" time="0.037"/>
-  <testcase name="BaccaratCard objects can be compared &amp; ordered" classname="Basic" time="0.004"/>
+  <testcase name="BaccaratCard objects are created properly" classname="Basic" time="0.041"/>
+  <testcase name="BaccaratCard objects can be compared &amp; ordered" classname="Basic" time="0.009"/>
   <testcase name="Cards dealt correctly from unshuffled Shoe" classname="Basic" time="0.002"/>
-  <testcase name="CardException when creating a Shoe with wrong number of decks" classname="Basic" time="0.004"/>
-  <testcase name="CardException when dealing from empty shoe" classname="Basic" time="0.002"/>
-  <testcase name="Shoes are created with the correct numbers of cards" classname="Basic" time="0.001"/>
-  <testcase name="BaccaratHand has the correct string representation" classname="Basic" time="0.007"/>
-  <testcase name="BaccaratCard values are computed correctly" classname="Basic" time="0.002"/>
-  <testcase name="BaccaratCard has the correct string representation" classname="Basic" time="0.002"/>
-  <testcase name="BaccaratHand values computed correctly" classname="Basic" time="0.002"/>
+  <testcase name="CardException when creating a Shoe with wrong number of decks" classname="Basic" time="0.007"/>
+  <testcase name="CardException when dealing from empty shoe" classname="Basic" time="0.003"/>
+  <testcase name="Shoes are created with the correct numbers of cards" classname="Basic" time="0.003"/>
+  <testcase name="BaccaratHand has the correct string representation" classname="Basic" time="0.012"/>
+  <testcase name="BaccaratCard values are computed correctly" classname="Basic" time="0.005"/>
+  <testcase name="BaccaratCard has the correct string representation" classname="Basic" time="0.005"/>
+  <testcase name="BaccaratHand values computed correctly" classname="Basic" time="0.003"/>
   <testcase name="Empty hand created correctly" classname="Basic" time="0.001"/>
-  <testcase name="BaccaratCard objects can be tested for equality" classname="Basic" time="0.001"/>
-  <testcase name="Correct detection of whether a BaccaratHand is a 'natural'" classname="Basic" time="0.001"/>
+  <testcase name="BaccaratCard objects can be tested for equality" classname="Basic" time="0.004"/>
+  <testcase name="Correct detection of whether a BaccaratHand is a 'natural'" classname="Basic" time="0.004"/>
   <testcase name="Cards added to hand correctly" classname="Basic" time="0.002"/>
-  <testcase name="Shoe can be shuffled" classname="Basic" time="0.003"/>
+  <testcase name="Shoe can be shuffled" classname="Basic" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
