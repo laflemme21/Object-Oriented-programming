@@ -1,15 +1,26 @@
-public class BaccaratCard extends Card{
+public class BaccaratCard extends Card {
 
-    public BaccaratCard(Card.Rank r,Card.Suit s){
-        super(r,s);
+    /**
+     * BaccaratCard constructor
+     * 
+     * @param r
+     * @param s
+     */
+    public BaccaratCard(Card.Rank r, Card.Suit s) {
+        super(r, s);
     }
 
+    /**
+     * returns the value of BaccaratCard
+     * 
+     * @return int
+     */
     @Override
-    public int value(){
-        if(Math.min(getRank().ordinal() + 1, 10)<10){
-            return Math.min(getRank().ordinal() + 1, 10);
+    public int value() {
+        if (getRank().ordinal() + 1 < 10) {
+            return getRank().ordinal() + 1;
+        } else {
+            return 0;
         }
-        else{
-        return 0;}
     }
 }

@@ -1,7 +1,9 @@
 /**
  * Representation of a playing card.
  *
- * <p>Provided for use in COMP1721 Coursework 2.</p>
+ * <p>
+ * Provided for use in COMP1721 Coursework 2.
+ * </p>
  *
  * @author Nick Efford
  */
@@ -14,9 +16,13 @@ public class Card implements Comparable<Card> {
 
     private final char symbol;
 
-    Rank(char s) { symbol = s; }
+    Rank(char s) {
+      symbol = s;
+    }
 
-    public char getSymbol() { return symbol; }
+    public char getSymbol() {
+      return symbol;
+    }
 
     @Override
     public String toString() {
@@ -34,7 +40,9 @@ public class Card implements Comparable<Card> {
       symbol = s;
     }
 
-    public char getSymbol() { return symbol; }
+    public char getSymbol() {
+      return symbol;
+    }
 
     @Override
     public String toString() {
@@ -59,8 +67,10 @@ public class Card implements Comparable<Card> {
   /**
    * Creates a Card object, given its name as a string.
    *
-   * <p>Name can either be given in full - e.g., "Ace of Clubs" - or
-   * be abbreviated to a two-character code - e.g., "AC".</p>
+   * <p>
+   * Name can either be given in full - e.g., "Ace of Clubs" - or
+   * be abbreviated to a two-character code - e.g., "AC".
+   * </p>
    *
    * @param name Name of card
    * @throws CardException if string is invalid
@@ -68,8 +78,7 @@ public class Card implements Comparable<Card> {
   public Card(String name) {
     if (name.length() > 2) {
       parseLongName(name);
-    }
-    else {
+    } else {
       parseRank(name);
       parseSuit(name);
     }
@@ -80,14 +89,13 @@ public class Card implements Comparable<Card> {
     if (parts.length == 3 && parts[1].toLowerCase().equals("of")) {
       rank = Rank.valueOf(parts[0].toUpperCase());
       suit = Suit.valueOf(parts[2].toUpperCase());
-    }
-    else {
+    } else {
       throw new CardException("Invalid card name format");
     }
   }
 
   private void parseRank(String name) {
-    for (Rank r: Rank.values()) {
+    for (Rank r : Rank.values()) {
       if (r.getSymbol() == name.charAt(0)) {
         rank = r;
         break;
@@ -100,7 +108,7 @@ public class Card implements Comparable<Card> {
   }
 
   private void parseSuit(String name) {
-    for (Suit s: Suit.values()) {
+    for (Suit s : Suit.values()) {
       if (s.getSymbol() == name.charAt(1)) {
         suit = s;
         break;
@@ -150,8 +158,7 @@ public class Card implements Comparable<Card> {
   public boolean equals(Object thing) {
     if (thing == this) {
       return true;
-    }
-    else if (thing instanceof Card) {
+    } else if (thing instanceof Card) {
       final Card card = (Card) thing;
       return rank == card.rank && suit == card.suit;
     }
@@ -161,7 +168,9 @@ public class Card implements Comparable<Card> {
   /**
    * Creates a two-character string representation of this card.
    *
-   * <p>The first character represents rank, the second represents suit.</p>
+   * <p>
+   * The first character represents rank, the second represents suit.
+   * </p>
    *
    * @return String representation of this card
    */
@@ -184,7 +193,7 @@ public class Card implements Comparable<Card> {
    * (by suit, then by rank).
    *
    * @return A negative integer if this card comes before the other, 0 if
-   *   they are the same, a positive integer if this card comes after
+   *         they are the same, a positive integer if this card comes after
    */
   @Override
   public int compareTo(Card other) {
@@ -200,8 +209,10 @@ public class Card implements Comparable<Card> {
   /**
    * Computes the value of this card.
    *
-   * <p>Value is based on rank and disregards suit. Aces score 1
-   * and picture cards all score 10.</p>
+   * <p>
+   * Value is based on rank and disregards suit. Aces score 1
+   * and picture cards all score 10.
+   * </p>
    *
    * @return Card value
    */
